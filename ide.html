@@ -1,0 +1,710 @@
+<html><head><base href="https://imaginecode.co/">
+<title>ImagineCode - AI-Powered Imaginary Programming Language IDE</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    :root {
+        --primary-color: #1A535C;
+        --secondary-color: #4ECDC4;
+        --background-color: #FBEBE0;
+        --text-color: #1A535C;
+        --button-color: #41B3A2;
+        --button-text-color: #F7FFF7;
+        --header-bg: #FBEBE0;
+        --header-text: #1A535C;
+        --link-color: #4ECDC4;
+        --neo-brutalism-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+        --modal-color: #050505;
+
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #navbar {
+        background-color: var(--header-bg);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--text-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #navbar .logo {
+        width: 150px;
+        height: auto;
+        padding-left: 160px;
+    }
+
+    #navbar ul {
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    #navbar ul li {
+        margin: 0 20px;
+    }
+
+    #navbar ul li a {
+        color: var(--header-text);
+        text-decoration: none;
+        font-weight: 300;
+        transition: color 0.3s ease;
+        padding: 8px 16px;
+        border: 2px solid transparent;
+    }
+
+    #navbar ul li a:hover {
+        color: var(--button-text-color);
+        transition: all 0.8s ease;
+        background-color: var(--button-color);
+        border: 2px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+        transform: translate(-2px, -2px);
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-icons a {
+        color: var(--header-text);
+        font-size: 24px;
+        margin-left: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--button-color);
+        transform: translateY(-2px);
+    }
+    
+    #container {
+        display: flex;
+        flex-grow: 1;
+        height: calc(100vh - 70px); /* Adjust based on navbar height */
+    }
+
+    #editor-container, #preview-container {
+        flex: 1;
+        display: flexbox;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+    }
+
+    #editor {
+        flex: auto;
+        font-family: 'Space Grotesk', monospace;
+        width: 100%;
+        height: 85%; 
+        overflow: visible;
+    }
+
+    #preview-container {
+        flex: 1;
+        height: 100%;
+        background-color: var(--background-color);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    #preview {
+        border: none;
+        flex: 1;
+        width: 100%;
+        background-color: var(--background-color);
+    }
+
+    .button {
+        
+        font-family: 'Space Grotesk', sans-serif;
+        padding: 8px 16px;
+        background-color: var(--button-color);
+        color: var(--button-text-color);
+        border: 2px solid var(--text-color);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: var(--neo-brutalism-shadow);
+        margin-right: 40px;
+    }
+
+    .button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    #run-button {
+        margin: 20px auto;
+        display: block;
+    }
+
+    .panel-header {
+        background-color: var(--header-bg);
+        color: var(--header-text);
+        padding: 10px;
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 40px;
+        border-bottom: 2px solid var(--text-color);
+    }
+
+    .panel-header .logo {
+        width: 25px;
+        height: auto;
+        margin-right: 10px;
+    }
+
+    .panel-header .title {
+        flex-grow: 1;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    #preview-container .panel-header {
+        justify-content: space-between;
+    }
+
+    #preview-container .panel-header .title {
+        margin-right: auto;
+        margin-left: auto; 
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    #container > div {
+        animation: fadeIn 1.3s ease-out;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: var(--background-color);
+        padding: 40px;
+        width: 90%;
+        max-width: 500px;
+        border: 2px solid var(--modal-color);
+        animation: fadeIn 0.5s ease-out;
+        text-align: center;
+        box-shadow: var(--neo-brutalism-shadow);
+    }
+
+    .modal h2 {
+        color: var(--header-text);
+        margin-bottom: 20px;
+    }
+
+    .modal p {
+        color: var(--text-color);
+    }
+
+    .modal input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 20px;
+        border: 2px solid var(--text-color);
+        background-color: var(--background-color);
+        color: var(--text-color);
+        box-sizing: border-box;
+        font-size: 18px;
+        font-family: 'Space Grotesk', sans-serif;
+        transition: all 0.3s ease;
+        box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal input[type="text"]::placeholder {
+        color: rgba(26, 83, 92, 0.5);
+    }
+
+    .modal input[type="text"]:focus {
+        outline: none;
+        box-shadow: var(--neo-brutalism-shadow);
+    }
+
+    #creator-info {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        font-size: 14px;
+        color: var(--text-color);
+    }
+
+    #creator-info a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    #creator-info a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+
+    .modal-logo {
+        width: 180px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .welcome-text {
+        font-family:'Poppins';
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--header-text);
+        margin-bottom: 20px;
+    }
+
+    #loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(26, 83, 92, 0.8);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loading-spinner {
+        width: 100px;
+        height: 100px;
+        animation: spin 2.5s linear infinite, pulse 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.7; }
+        100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .loading-text {
+        color: var(--background-color);
+        font-size: 28px;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 700;
+        transition: all 0.9s ease;
+    }
+
+    #loading-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #welcomeModal {
+        z-index: 1001;
+    }
+
+    #welcomeModal .modal-content {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        text-align: center;
+        padding: 40px;
+    }
+
+    .welcome-logo {
+        width: 180px;
+        height: auto;
+        margin-bottom: 20px;
+        animation: gentle-float 3s ease-in-out infinite;
+    }
+
+    @keyframes gentle-float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .platform-name {
+        font-family: 'Poppins';
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--header-text);
+    }
+
+    .welcome-message {
+        font-size: 20px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    #welcomeModal .button {
+        font-size: 20px;
+        padding: 12px 30px;
+    }
+
+    #download-button {
+        padding: 4px 8px;
+        font-size: 12px;
+        height: 25px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ1DJDSNWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MJ1DJDSNWY');
+</script>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.40.0/min/vs/loader.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<nav id="navbar">
+    <a href="./">
+    <img src="https://imaginecode.co/logo.svg" alt="ImagineCode Logo" class="logo">
+</a>
+    <ul>
+        <li><a href="./"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="./ide"><i class="fas fa-code"></i> IDE</a></li>
+        <li><a href="./pricing"><i class="fas fa-tags"></i> Pricing</a></li>
+        <li><a href="./contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+    <div class="social-icons">
+        <a href="https://twitter.com/imaginecode" target="_blank" title="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+        </a>
+        <a href="https://github.com/imaginecode" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+</nav>
+
+<div id="container">
+    <div id="editor-container">
+        <div class="panel-header">
+            <span class="title">Imaginary Programming IDE</span>
+        </div>
+        <div id="editor"></div>
+        <button id="run-button" class="button">Run Code</button>
+        <div id="creator-info">Created by <a href="https://www.youtube.com/watch?v=BBJa32lCaaY" target="_blank">Armin Selimovic</a></div>
+    </div>
+    <div id="preview-container">
+        <div class="panel-header">
+            <span class="title">Preview</span>
+            <button id="download-button" class="button">Download Code</button>
+        </div>
+        <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+</div>
+
+<!-- Welcome Modal -->
+<div id="welcomeModal" class="modal">
+    <div class="modal-content">
+        <img src="https://imaginecode.co/logo.svg" alt="ImagineCode Logo" class="welcome-logo">
+        <div class="platform-name">ImagineCode</div>
+        <p class="welcome-message">
+            Welcome to the world of programming where your imagination is the only limit! 
+            No coding skills? No problem! Just think it, and we'll pretend to understand. 
+            It's like playing make-believe, but with computers. What could possibly go wrong?
+        </p>
+        <button id="continueToApiKey" class="button">Let's Get Imaginary!</button>
+    </div>
+</div>
+
+<!-- API Key Modal -->
+<div id="apiKeyModal" class="modal">
+    <div class="modal-content">
+        <img src="https://imaginecode.co/logo.svg" alt="ImagineCode Logo" class="modal-logo">
+        <div class="welcome-text">Welcome to ImagineCode</div>
+        <h2>Enter Your OpenAI API Key</h2>
+        <p>To use this code editor, please enter your OpenAI API key:</p>
+        <input type="text" id="apiKeyInput" placeholder="Enter your API key here">
+        <button id="submitApiKey" class="button">Submit</button>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div id="loading-content">
+        <img src="https://cashcrafthub.com/imaginecode.svg" alt="Loading..." id="loading-spinner">
+        <div class="loading-text">Runing your Code...</div>
+    </div>
+</div>
+
+<script>
+    let apiKey = '';
+    let generatedCode = '';
+
+    window.onload = function() {
+        document.getElementById('welcomeModal').style.display = 'flex';
+    }
+
+    document.getElementById('continueToApiKey').addEventListener('click', function() {
+        document.getElementById('welcomeModal').style.display = 'none';
+        document.getElementById('apiKeyModal').style.display = 'flex';
+    });
+
+    document.getElementById('submitApiKey').addEventListener('click', function() {
+        apiKey = document.getElementById('apiKeyInput').value.trim();
+        if (apiKey) {
+            document.getElementById('apiKeyModal').style.display = 'none';
+            initializeEditor();
+        } else {
+            alert('Please enter a valid API key.');
+        }
+    });
+
+    function initializeEditor() {
+        require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs' } });
+
+        require(['vs/editor/editor.main'], function() {
+            monaco.editor.defineTheme('neoBrutalism', {
+                base: 'vs',
+                inherit: true,
+                rules: [
+                    { token: 'keyword', foreground: '#FF6B6B', fontStyle: 'bold' },
+                    { token: 'string', foreground: '#4ECDC4' },
+                    { token: 'number', foreground: '#45B7D1' },
+                    { token: 'comment', foreground: '#A2A2A2', fontStyle: 'italic' },
+                    { token: 'function', foreground: '#FF8C42' },
+                    { token: 'variable', foreground: '#1A535C' },
+                    { token: 'type', foreground: '#FF6B6B' },
+                ],
+                colors: {
+                    'editor.background': '#e8d5c8',
+                    'editor.foreground': '#1A535C',
+                    'editor.lineHighlightBackground': '#e8d5c8',
+                    'editorCursor.foreground': '#1A535C',
+                    'editorWhitespace.foreground': '#BFBFBF',
+                    'editorIndentGuide.activeBackground': '#FF6B6B',
+                }
+            });
+
+            monaco.languages.register({ id: 'imaginaryLang' });
+
+            monaco.languages.setLanguageConfiguration('imaginaryLang', {
+            brackets: [
+                ['{', '}'],
+                ['[', ']'],
+                ['(', ')']
+            ],
+            autoClosingPairs: [
+                { open: '{', close: '}' },
+                { open: '[', close: ']' },
+                { open: '(', close: ')' },
+                { open: '"', close: '"', notIn: ['string'] },
+                { open: "'", close: "'", notIn: ['string', 'comment'] }
+            ],
+            surroundingPairs: [
+                { open: '{', close: '}' },
+                { open: '[', close: ']' },
+                { open: '(', close: ')' },
+                { open: '"', close: '"' },
+                { open: "'", close: "'" }
+            ]
+        });
+            monaco.languages.setMonarchTokensProvider('imaginaryLang', {
+                keywords: [
+                    'if', 'else', 'for', 'while', 'function', 'return', 'var', 'let', 'const',
+                    'class', 'import', 'export', 'try', 'catch', 'finally', 'switch', 'case',
+                    'break', 'continue', 'default', 'do', 'in', 'of', 'new', 'this', 'super',
+                    'extends', 'static', 'async', 'await', 'yield', 'create'
+                ],
+                typeKeywords: [
+                    'boolean', 'number', 'string', 'array', 'object', 'void', 'null', 'undefined', 'component'
+                ],
+                operators: [
+                    '=', '>', '<', '!', '~', '?', ':', '==', '<=', '>=', '!=',
+                    '&&', '||', '++', '--', '+', '-', '*', '/', '&', '|', '^', '%',
+                    '<<', '>>', '>>>', '+=', '-=', '*=', '/=', '&=', '|=', '^=',
+                    '%=', '<<=', '>>=', '>>>='
+                ],
+                symbols:  /[=><!~?:&|+\-*\/\^%]+/,
+                escapes: /\\(?:[abfnrtv\\"']|x[0-9A-Fa-f]{1,4}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})/,
+
+                tokenizer: {
+                    root: [
+                        [/[a-z_$][\w$]*/, { 
+                            cases: { 
+                                '@typeKeywords': 'type',
+                                '@keywords': 'keyword',
+                                '@default': 'variable'
+                            }
+                        }],
+                        [/[A-Z][\w\$]*/, 'type'],
+                        { include: '@whitespace' },
+                        [/[{}()\[\]]/, '@brackets'],
+                        [/[<>](?!@symbols)/, '@brackets'],
+                        [/@symbols/, { cases: { '@operators': 'operator', '@default': '' } }],
+                        [/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
+                        [/0[xX][0-9a-fA-F]+/, 'number.hex'],
+                        [/\d+/, 'number'],
+                        [/[;,.]/, 'delimiter'],
+                        [/"([^"\\]|\\.)*$/, 'string.invalid'],
+                        [/'([^'\\]|\\.)*$/, 'string.invalid'],
+                        [/"/, 'string', '@string_double'],
+                        [/'/, 'string', '@string_single'],
+                    ],
+                    whitespace: [
+                        [/[ \t\r\n]+/, 'white'],
+                        [/\/\*/, 'comment', '@comment'],
+                        [/\/\/.*$/, 'comment'],
+                    ],
+                    comment: [
+                        [/[^\/*]+/, 'comment'],
+                        [/\*\//, 'comment', '@pop'],
+                        [/[\/*]/, 'comment']
+                    ],
+                    string_double: [
+                        [/[^\\"]+/, 'string'],
+                        [/@escapes/, 'string.escape'],
+                        [/\\./, 'string.escape.invalid'],
+                        [/"/, 'string', '@pop']
+                    ],
+                    string_single: [
+                        [/[^\\']+/, 'string'],
+                        [/@escapes/, 'string.escape'],
+                        [/\\./, 'string.escape.invalid'],
+                        [/'/, 'string', '@pop']
+                    ],
+                },
+            });
+
+            const editor = monaco.editor.create(document.getElementById('editor'), {
+                value: 'function greet(name) {\n\treturn "Hello, " + name + "!";\n}\n\nvar result = greet("World");\nconsole.log(result);',
+                language: 'imaginaryLang',
+                theme: 'neoBrutalism',
+                automaticLayout: true,
+                fontSize: 16,
+                fontFamily: 'Space Grotesk',
+                lineHeight: 24,
+                autoClosingBrackets: 'always',
+                autoClosingQuotes: 'always',
+                scrollbar: {
+                vertical: 'hidden',
+                horizontal: 'hidden',
+                verticalScrollbarSize: 0,   // Set vertical scrollbar size to 0 to remove the gutter
+                horizontalScrollbarSize: 0
+                }
+            });
+
+            document.getElementById('run-button').addEventListener('click', async function() {
+                const imaginaryCode = editor.getValue();
+                showLoadingOverlay();
+                try {
+                    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: "gpt-4o-mini",
+                            messages: [
+                                {role: "system", content: "You are an advanced AI that interprets imaginative and abstract user inputs and translates them into functional, high-quality code. Your task is to understand the user's input, which may include creative or hypothetical programming languages or concepts, and transform these ideas into executable HTML, CSS, and JavaScript code. Carefully analyze the user's imagination and intent. Use logic and reasoning to translate abstract ideas into practical code. Focus on creating a modern and professional UI design, utilizing clean and aesthetically pleasing styles. Use high-quality fonts like Poppins or Space Grotesk to enhance the visual appeal of the UI. When providing your response, output only the code itself with no additional text, comments, or symbols. Ensure the output is pure HTML, CSS, and JavaScript. Your goal is to accurately reflect the user's creative vision in the code you generate.Please provide the output as a single HTML file with embedded CSS and JavaScript."},
+                                {role: "user", content: `Translate the following imaginary code into HTML, CSS, and JavaScript. Try to generate a modern UI with good fonts and styling. Provide the output as a single HTML file. only give me output of PURE CODE, no extra symbols or anything, and make the code responsive.:\n\n${imaginaryCode}`}
+                            ],
+                            max_tokens: 2000,
+                            n: 1,
+                            temperature: 0.7
+                        })
+                    });
+
+                    const data = await response.json();
+                    if (data.error) {
+                        throw new Error(data.error.message);
+                    }
+                    generatedCode = data.choices[0].message.content.trim();
+                    
+                    const previewFrame = document.getElementById('preview');
+                    previewFrame.srcdoc = generatedCode;
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while processing your code: ' + error.message);
+                } finally {
+                    hideLoadingOverlay();
+                }
+            });
+
+            document.getElementById('download-button').addEventListener('click', function() {
+                if (generatedCode) {
+                    const blob = new Blob([generatedCode], { type: 'text/html' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'generated_code.html';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } else {
+                    alert('No code has been generated yet. Please run the code first.');
+                }
+            });
+        });
+    }
+
+    function showLoadingOverlay() {
+        document.getElementById('loading-overlay').style.display = 'flex';
+    }
+
+    function hideLoadingOverlay() {
+        document.getElementById('loading-overlay').style.display = 'none';
+    }
+</script>
+</body>
+</html>

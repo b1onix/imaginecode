@@ -1,0 +1,313 @@
+<html><head><base href="https://imaginecode.co/">
+<title>ImagineCode - Pricing</title>
+<meta charset="UTF-8">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+    :root {
+        --primary-color: #1A535C;
+        --secondary-color: #4ECDC4;
+        --background-color: #FBEBE0;
+        --text-color: #1A535C;
+        --button-color: #41B3A2;
+        --button-text-color: #F7FFF7;
+        --header-bg: #FBEBE0;
+        --header-text: #1A535C;
+        --link-color: #4ECDC4;
+        --neo-brutalism-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+        --modal-color: #050505;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #navbar {
+        background-color: var(--header-bg);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--text-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #navbar .logo {
+        width: 150px;
+        height: auto;
+        padding-left: 160px;
+        
+    }
+
+    #navbar .logo:hover {
+        transform: rotate(360deg);
+    }
+
+    #navbar ul {
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    #navbar ul li {
+        margin: 0 20px;
+    }
+
+    #navbar ul li a {
+        color: var(--header-text);
+        text-decoration: none;
+        font-weight: 300;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border: 2px solid transparent;
+    }
+
+    #navbar ul li a:hover {
+        color: var(--button-text-color);
+        background-color: var(--button-color);
+        border: 2px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+        transform: translate(-2px, -2px);
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-icons a {
+        color: var(--header-text);
+        font-size: 24px;
+        margin-left: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--button-color);
+        transform: translateY(-2px);
+    }
+
+    .pricing-header {
+        text-align: center;
+        padding: 60px 20px;
+        background-color: var(--background-color);
+    }
+
+    .pricing-header h1 {
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .pricing-header p {
+        font-size: 24px;
+        max-width: 800px;
+        margin: 0 auto;
+        animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    .pricing-plans {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 60px 20px;
+    }
+
+    .pricing-plan {
+        background-color: var(--header-bg);
+        border: 2px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+        padding: 40px;
+        width: 300px;
+        text-align: center;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .pricing-plan:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    .pricing-plan h2 {
+        font-size: 36px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .pricing-plan .price {
+        font-size: 48px;
+        font-weight: bold;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+    }
+
+    .pricing-plan ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+
+    .pricing-plan ul li {
+        margin-bottom: 10px;
+    }
+
+    .pricing-button {
+        font-family: 'Space Grotesk', sans-serif;
+        padding: 12px 24px;
+        background-color: var(--button-color);
+        color: var(--button-text-color);
+        border: 2px solid var(--text-color);
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: var(--neo-brutalism-shadow);
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .pricing-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    footer {
+        background-color: var(--header-bg);
+        color: var(--text-color);
+        text-align: center;
+        padding: 20px;
+        margin-top: auto;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .pricing-plans {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pricing-plan {
+            width: 80%;
+            max-width: 300px;
+        }
+    }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ1DJDSNWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MJ1DJDSNWY');
+</script>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav id="navbar">
+        <a href="./">
+    <img src="https://imaginecode.co/logo.svg" alt="ImagineCode Logo" class="logo">
+</a>
+        <ul>
+            <li><a href="./"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./ide"><i class="fas fa-code"></i> IDE</a></li>
+            <li><a href="./pricing"><i class="fas fa-tags"></i> Pricing</a></li>
+            <li><a href="./contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://twitter.com/imaginecode" target="_blank" title="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/imaginecode" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="pricing-header">
+            <h1>Simple Pricing for Limitless Imagination</h1>
+            <p>Choose the plan that fits your needs and start bringing your ideas to life today!</p>
+        </section>
+
+        <section class="pricing-plans">
+            <div class="pricing-plan">
+                <h2>Free</h2>
+                <div class="price">$0</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Access to basic IDE features</li>
+                    <li><i class="fas fa-check"></i> 5 projects</li>
+                    <li><i class="fas fa-check"></i> Community support</li>
+                    <li><i class="fas fa-check"></i> Basic AI assistance</li>
+                </ul>
+                <a href="https://imaginecode.co/ide" class="pricing-button">Get Started</a>
+            </div>
+            <div class="pricing-plan">
+                <h2>Donation</h2>
+                <div class="price">❤️</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> All Free features</li>
+                    <li><i class="fas fa-check"></i> Unlimited projects</li>
+                    <li><i class="fas fa-check"></i> Priority support</li>
+                    <li><i class="fas fa-check"></i> Advanced AI features</li>
+                </ul>
+                <a href="https://imaginecode.co/ide" class="pricing-button">Donate Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ImagineCode. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add a simple animation to the pricing plans
+        const pricingPlans = document.querySelectorAll('.pricing-plan');
+        pricingPlans.forEach((plan, index) => {
+            plan.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>

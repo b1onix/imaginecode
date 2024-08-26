@@ -1,0 +1,302 @@
+<html><head><base href="https://imaginecode.co/">
+<title>ImagineCode - Contact Us</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap');
+
+    :root {
+        --primary-color: #1A535C;
+        --secondary-color: #4ECDC4;
+        --background-color: #FBEBE0;
+        --text-color: #1A535C;
+        --button-color: #41B3A2;
+        --button-text-color: #F7FFF7;
+        --header-bg: #FBEBE0;
+        --header-text: #1A535C;
+        --link-color: #4ECDC4;
+        --neo-brutalism-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+        --modal-color: #050505;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #navbar {
+        background-color: var(--header-bg);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-bottom: 1px solid var(--text-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #navbar .logo {
+        width: 150px;
+        height: auto;
+        padding-left: 160px;
+        
+    }
+
+    #navbar .logo:hover {
+        transform: rotate(360deg);
+    }
+
+    #navbar ul {
+        list-style-type: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    #navbar ul li {
+        margin: 0 20px;
+    }
+
+    #navbar ul li a {
+        color: var(--header-text);
+        text-decoration: none;
+        font-weight: 300;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border: 2px solid transparent;
+    }
+
+    #navbar ul li a:hover {
+        color: var(--button-text-color);
+        background-color: var(--button-color);
+        border: 2px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+        transform: translate(-2px, -2px);
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+    }
+
+    .social-icons a {
+        color: var(--header-text);
+        font-size: 24px;
+        margin-left: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--button-color);
+        transform: translateY(-2px);
+    }
+
+    .contact-header {
+        text-align: center;
+        padding: 60px 20px;
+        background-color: var(--background-color);
+    }
+
+    .contact-header h1 {
+        font-size: 48px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .contact-email {
+        font-size: 24px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    .contact-email i {
+        margin-right: 10px;
+        color: var(--secondary-color);
+    }
+
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 40px;
+        background-color: var(--header-bg);
+        border: 2px solid var(--text-color);
+        box-shadow: var(--neo-brutalism-shadow);
+        animation: fadeInUp 1s ease-out 1s both;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid var(--text-color);
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 16px;
+    }
+
+    .form-group textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    .submit-button {
+        font-family: 'Space Grotesk', sans-serif;
+        padding: 12px 24px;
+        background-color: var(--button-color);
+        color: var(--button-text-color);
+        border: 2px solid var(--text-color);
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        box-shadow: var(--neo-brutalism-shadow);
+        display: block;
+        width: 100%;
+    }
+
+    .submit-button:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    footer {
+        background-color: var(--header-bg);
+        color: var(--text-color);
+        text-align: center;
+        padding: 20px;
+        margin-top: auto;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-form {
+            width: 90%;
+            padding: 20px;
+        }
+    }
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MJ1DJDSNWY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MJ1DJDSNWY');
+</script>
+<link rel="icon" href="/favicon.png" type="image/png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav id="navbar">
+        <a href="./">
+    <img src="https://imaginecode.co/logo.svg" alt="ImagineCode Logo" class="logo">
+</a>
+        <ul>
+            <li><a href="./"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./ide"><i class="fas fa-code"></i> IDE</a></li>
+            <li><a href="./pricing"><i class="fas fa-tags"></i> Pricing</a></li>
+            <li><a href="./contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="https://twitter.com/imaginecode" target="_blank" title="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/imaginecode" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="contact-header">
+            <h1>Get in Touch</h1>
+            <div class="contact-email">
+                <i class="fas fa-envelope"></i>
+                <span>info@imaginecode.co</span>
+            </div>
+        </section>
+
+        <section class="contact-form">
+            <form id="contact-form" action="https://formspree.io/f/your_form_id" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ImagineCode. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelector('#contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically handle the form submission,
+            // such as sending the data to a server or API
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Add a simple animation to the form elements
+        const formGroups = document.querySelectorAll('.form-group');
+        formGroups.forEach((group, index) => {
+            group.style.animationDelay = `${(index + 2) * 0.2}s`;
+            group.style.animation = 'fadeInUp 1s ease-out both';
+        });
+    </script>
+</body>
+</html>
